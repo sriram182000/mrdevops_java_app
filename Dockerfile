@@ -1,4 +1,2 @@
-FROM openjdk:8-jdk-alpine
-WORKDIR /app
-COPY ./target/*.jar /app.jar  
-CMD ["java", "-jar", "app.jar"]
+FROM tomcat:latest
+COPY ./target/*.jar /usr/local/webapps/ 
