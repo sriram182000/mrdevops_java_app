@@ -4,6 +4,9 @@ pipeline {
     tools {
         maven 'Maven3'
     }
+    parameters {
+        choice(name:'action',choices:"create\ndestroy",description:"create or destroy")
+    }
     stages {
         stage('Git Checkout') {
             steps {
@@ -17,9 +20,21 @@ pipeline {
         }
 
         stage('Maven Unit Testing') {
+            when{expression {params.action=='create'}}
             steps {
                 script {
                     UnitTest()
+                }
+            }
+        }
+
+        stage('Maven Integration Test') {
+            when {expression{params.action=='create'}}
+            steps {
+                script {
+
+                    IntegrationTest()
+
                 }
             }
         }
