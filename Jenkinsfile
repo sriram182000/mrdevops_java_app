@@ -1,6 +1,9 @@
 @Library('jenkins-shared-library') _
 pipeline {
     agent any 
+    tools {
+        maven 'Maven 3'
+    }
     stages {
         stage('Git Checkout') {
             steps {
