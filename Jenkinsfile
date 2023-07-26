@@ -22,25 +22,24 @@ pipeline {
             }
         }
 
-       //stage('Maven Unit Testing') {
-         //   when{expression {params.action=='create'}}
-           // steps {
-             //   script {
-               //     UnitTest()
-              //  }
-           // }
-        //}
+        stage('Maven Unit Testing') {
+            when{expression {params.action=='create'}}
+            steps {
+                script {
+                    UnitTest()
+                }
+            }
+        }
 
-       // stage('Maven Integration Test') {
-         //   when {expression{params.action=='create'}}
-           // steps {
-             //   script {
+       stage('Maven Integration Test') {
+           when {expression{params.action=='create'}}
+            steps {
+                script {
+                       IntegrationTest()
 
-                //    IntegrationTest()
-
-                //}
-            // }
-        //}
+                }
+            }
+        }
 
         stage("Maven Build") {
             when {expression{params.action=='create'}}
