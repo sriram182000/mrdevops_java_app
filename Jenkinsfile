@@ -59,5 +59,13 @@ pipeline {
                 }
             }
         }
+        stage ("Docker Push") {
+            when {expression{params.action=='create'}}
+            steps{
+                script {
+                    DockerPush("${params.Dockerhub}","${params.Imgname}","${params.Tagname}")
+                }
+            }
+        }
     }
 }
