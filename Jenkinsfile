@@ -41,7 +41,19 @@ pipeline {
             }
         }
 
-        stage ('Static Code Analysis') {
+        
+
+        stage ('Quality Status Check') {
+	        steps {
+		        script {
+
+			        def SonarQubeCredentialsId='sonar'
+			        qualitystatuscheck(SonarQubeCredentialsId)
+                }
+            }
+
+        }
+        stage('Static Code Analysis') {
             steps {
                 script {
                     def sonar='sonar'
