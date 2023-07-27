@@ -28,7 +28,7 @@ pipeline {
                 script {
                     UnitTest()
                 }
-            }
+            }b
         }
 
        stage('Maven Integration Test') {
@@ -37,6 +37,15 @@ pipeline {
                 script {
                        IntegrationTest()
 
+                }
+            }
+        }
+
+        stage ('Static Code Analysis') {
+            steps {
+                script {
+                    def sonar='sonar'
+                    StaticCodeAnalysis(sonar)
                 }
             }
         }
@@ -50,21 +59,21 @@ pipeline {
             }
         }
 
-        stage("Docker Build") {
-            when {expression{params.action=='create'}}
-            steps {
-                script {
-                    DockerBuild("${params.Dockerhub}","${params.Imgname}","${params.Tagname}")
-                }
-            }
-        }
-        stage ("Docker Push") {
-            when {expression{params.action=='create'}}
-            steps{
-                script {
-                    DockerPush("${params.Dockerhub}","${params.Imgname}","${params.Tagname}")
-                }
-            }
-        }
+       // stage("Docker Build") {
+          //   when {expression{params.action=='create'}}
+             //steps {
+                    // script {
+                    //DockerBuild("${params.Dockerhub}","${params.Imgname}","${params.Tagname}")
+                //}
+            //}
+        //}
+        //stage ("Docker Push") {
+          //  when {expression{params.action=='create'}}
+            //steps{
+              //  script {
+                //    DockerPush("${params.Dockerhub}","${params.Imgname}","${params.Tagname}")
+                //}
+            //}
+        //}
     }
 }
