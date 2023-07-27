@@ -28,7 +28,7 @@ pipeline {
                 script {
                     UnitTest()
                 }
-            }b
+            }
         }
 
        stage('Maven Integration Test') {
