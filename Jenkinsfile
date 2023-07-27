@@ -6,9 +6,9 @@ pipeline {
     }
     parameters {
         choice(name:'action',choices:"create\ndestroy",description:"create or destroy")
-        string(name:'Imgname', description:'docker image name',defaultValue:"Javaapp")
-        string(name:'Dockerhub',description:'docker hub account name',defaultValue: "sriram789")
-        string(name:'Tagname',description:"tagname of image",defaultValue:"latest")
+       // string(name:'Imgname', description:'docker image name',defaultValue:"Javaapp")
+        //tring(name:'Dockerhub',description:'docker hub account name',defaultValue: "sriram789")
+       // string(name:'Tagname',description:"tagname of image",defaultValue:"latest")
     }
     stages {
         stage('Git Checkout') {
